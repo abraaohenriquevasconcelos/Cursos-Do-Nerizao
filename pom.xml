@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>br.inpe.lac</groupId>
+  <artifactId>Neri-Java-EE-2</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Neri-Java-EE-2 Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+	<dependency>
+	  <groupId>org.postgresql</groupId>
+	  <artifactId>postgresql</artifactId>
+	  <version>9.4.1208</version>
+	</dependency>
+    
+  </dependencies>
+  
+  <build>
+    <finalName>Neri-Java-EE-2</finalName>
+    
+    <plugins>
+		<!--Configure Maven to download Webapp Runner -->
+		<!--Webapp Runner allows you to launch an application in a Tomcat container on any computer  -->
+		<!--tha has a JRE installed. No previous steps to install Tomcat are required when using  -->
+		<!--Webapp Runner . It's just a jar file that can be executed and configured  -->
+		<!--You declare how you want your application executed in Procfile in the project root -->
+		<!-- 		Create this file with a single line -->
+
+		
+    	<plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.3</version>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals><goal>copy</goal></goals>
+                    <configuration>
+                        <artifactItems>
+                            <artifactItem>
+                         <groupId>com.github.jsimone</groupId>
+                        <artifactId>webapp-runner</artifactId>
+                                <version>8.0.30.2</version>
+                     <destFileName>webapp-runner.jar</destFileName>
+                            </artifactItem>
+                        </artifactItems>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+        
+    </plugins>
+  </build>
+  
+</project>
